@@ -1,5 +1,5 @@
 import pytest
-from src.file_loader import load_file
+from src.file_handler import load_file
 
 
 def test_load_file():
