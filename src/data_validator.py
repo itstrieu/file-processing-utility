@@ -4,7 +4,7 @@ def validate_schema(df, schema):
 
     Args:
         df (pd.DataFrame): DataFrame to validate.
-        schema (dict): Dictionary defining the expected schema. 
+        schema (dict): Dictionary defining the expected schema.
                        E.g., {
                            "id": "int",
                            "name": "str",
