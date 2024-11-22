@@ -145,7 +145,16 @@ def generate_flawed_txt(file_path, num_rows=100):
 
 
 if __name__ == "__main__":
-    # Generate flawed datasets
-    generate_flawed_csv("data/flawed_sample.csv", 100)
-    generate_flawed_json("data/flawed_sample.json", 100)
-    generate_flawed_txt("data/flawed_sample.txt", 100)
+    num_rows = 10000  # Adjust size as needed
+    generate_flawed_csv(
+        os.path.join("data", "large_sample.csv"),
+        num_rows
+        )
+    generate_flawed_json(
+        os.path.join("data", "large_sample.json"),
+        num_rows
+        )
+    generate_flawed_txt(
+        os.path.join("data", "large_sample.txt"),
+        num_rows
+        )

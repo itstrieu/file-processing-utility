@@ -1,0 +1,3 @@
+Missing Values: {'ID': 112, 'Name': 112, 'Age': 2030, 'Contact': 112}
+Total Rows: 11112
+Duplicates: 1005
