@@ -1,0 +1,47 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["pypy3.10", "3.9", "3.10", "3.11", "3.12", "3.13"]  # Test across multiple Python versions
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+        pip install flake8  # Install linting tool
+
+    - name: Run flake8 linting
+      run: flake8 src/  # Lint the `src` directory
+
+    - name: Run tests
+      env:
+        PYTHONPATH: ${{ github.workspace }}
+      run: pytest
+
+  notify:
+    needs: test
+    if: failure()  # Runs only if the `test` job fails
+    runs-on: ubuntu-latest
+    steps:
+    - name: Send notification
+      run: |
+        echo "The Python CI workflow failed!"
+        # Add additional notification actions here, such as sending an email or a Slack message
